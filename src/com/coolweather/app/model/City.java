@@ -1,57 +1,97 @@
 package com.coolweather.app.model;
 
-public class City {
-	private int _id;
-	private String cityName;
-	private String cityCode;
-	private int provinceId;
-	
-	public City(int _id, String cityName, String cityCode, int provinceId) {
-		super();
-		this._id = _id;
-		this.cityName = cityName;
-		this.cityCode = cityCode;
-		this.provinceId = provinceId;
-	}
-	
-	public City(){}
+public class City{
 
-	public int get_id() {
-		return _id;
+    private String id;
+    private String cityEn;
+    private String cityZh;
+    private String countryCode;
+    private String countryEn;
+    private String countryZh;
+    private String provinceEn;
+    private String provinceZh;
+    private String leaderEn;
+    private String leaderZh;
+    private String lat;
+    private String lon;
+	public String getId() {
+		return id;
 	}
-
-	public void set_id(int _id) {
-		this._id = _id;
+	public void setId(String id) {
+		this.id = id;
 	}
-
-	public String getCityName() {
-		return cityName;
+	public String getCityEn() {
+		return cityEn;
 	}
-
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
+	public void setCityEn(String cityEn) {
+		this.cityEn = cityEn;
 	}
-
-	public String getCityCode() {
-		return cityCode;
+	public String getCityZh() {
+		return cityZh;
 	}
-
-	public void setCityCode(String cityCode) {
-		this.cityCode = cityCode;
+	public void setCityZh(String cityZh) {
+		this.cityZh = cityZh;
 	}
-
-	public int getProvinceId() {
-		return provinceId;
+	public String getCountryCode() {
+		return countryCode;
 	}
-
-	public void setProvinceId(int provinceId) {
-		this.provinceId = provinceId;
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
-
+	public String getCountryEn() {
+		return countryEn;
+	}
+	public void setCountryEn(String countryEn) {
+		this.countryEn = countryEn;
+	}
+	public String getCountryZh() {
+		return countryZh;
+	}
+	public void setCountryZh(String countryZh) {
+		this.countryZh = countryZh;
+	}
+	public String getProvinceEn() {
+		return provinceEn;
+	}
+	public void setProvinceEn(String provinceEn) {
+		this.provinceEn = provinceEn;
+	}
+	public String getProvinceZh() {
+		return provinceZh;
+	}
+	public void setProvinceZh(String provinceZh) {
+		this.provinceZh = provinceZh;
+	}
+	public String getLeaderEn() {
+		return leaderEn;
+	}
+	public void setLeaderEn(String leaderEn) {
+		this.leaderEn = leaderEn;
+	}
+	public String getLeaderZh() {
+		return leaderZh;
+	}
+	public void setLeaderZh(String leaderZh) {
+		this.leaderZh = leaderZh;
+	}
+	public String getLat() {
+		return lat;
+	}
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+	public String getLon() {
+		return lon;
+	}
+	public void setLon(String lon) {
+		this.lon = lon;
+	}
 	@Override
 	public String toString() {
-		return "City [_id=" + _id + ", cityName=" + cityName + ", cityCode=" + cityCode + ", provinceId=" + provinceId
-				+ "]";
+		return "City [id=" + id + ", cityEn=" + cityEn + ", cityZh=" + cityZh + ", countryCode=" + countryCode
+				+ ", countryEn=" + countryEn + ", countryZh=" + countryZh + ", provinceEn=" + provinceEn
+				+ ", provinceZh=" + provinceZh + ", leaderEn=" + leaderEn + ", leaderZh=" + leaderZh + ", lat=" + lat
+				+ ", lon=" + lon + "]";
 	}
 	
 }
