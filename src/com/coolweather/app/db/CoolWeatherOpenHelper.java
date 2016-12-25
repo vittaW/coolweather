@@ -12,7 +12,7 @@ public class CoolWeatherOpenHelper extends SQLiteOpenHelper {
 	 */
 	private static final String CREATE_CITY = 
 			"create table City(_id integer primary key autoincrement,"
-									+ "city_id varchar(10),"
+									+ "id varchar(10),"
 									+ "city_en varchar(10),"
 									+ "city_zh varchar(10),"
 									+ "country_code varchar(10),"

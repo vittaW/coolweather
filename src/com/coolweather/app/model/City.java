@@ -1,6 +1,9 @@
 package com.coolweather.app.model;
 
-public class City{
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class City implements Parcelable {
 
     private String id;
     private String cityEn;
@@ -93,5 +96,56 @@ public class City{
 				+ ", provinceZh=" + provinceZh + ", leaderEn=" + leaderEn + ", leaderZh=" + leaderZh + ", lat=" + lat
 				+ ", lon=" + lon + "]";
 	}
+	
+	//City实现parcelable接口,可以使用intent传递对象
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		// 写出
+		dest.writeString(id);
+		dest.writeString(cityEn);
+		dest.writeString(cityZh);
+		dest.writeString(countryCode);
+		dest.writeString(countryEn);
+		dest.writeString(countryZh);
+		dest.writeString(provinceEn);
+		dest.writeString(provinceZh);
+		dest.writeString(leaderEn);
+		dest.writeString(leaderZh);
+		dest.writeString(lat);
+		dest.writeString(lon);
+	}
+	
+	public static final Parcelable.Creator<City> CREATOR = new Creator<City>() {
+		
+		@Override
+		public City[] newArray(int size) {
+			// TODO Auto-generated method stub
+			return new City[size];
+		}
+		
+		@Override
+		public City createFromParcel(Parcel source) {
+			City city = new City();
+			//读取的顺序要跟写入的顺序相同
+			city.setId(source.readString());
+			city.setCityEn(source.readString());
+			city.setCityZh(source.readString());
+			city.setCountryCode(source.readString());
+			city.setCountryEn(source.readString());
+			city.setCountryZh(source.readString());
+			city.setProvinceEn(source.readString());
+			city.setProvinceZh(source.readString());
+			city.setLeaderEn(source.readString());
+			city.setLeaderZh(source.readString());
+			city.setLat(source.readString());
+			city.setLon(source.readString());
+			return city;
+		}
+	};
 	
 }

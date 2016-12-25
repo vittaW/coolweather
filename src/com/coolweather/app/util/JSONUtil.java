@@ -5,10 +5,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
-import java.util.Arrays;
 import java.util.List;
 import com.coolweather.app.db.CoolWeatherDB;
 import com.coolweather.app.model.City;
+import com.coolweather.app.model.JsonWeather;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -17,7 +17,7 @@ public class JSONUtil {
 	/**解析和保存服务器返回的City数据
 	 * @param json
 	 */
-	public static void parserJSONCity(CoolWeatherDB coolWeatherDB,InputStream is){
+	public static void handleJSONCity(CoolWeatherDB coolWeatherDB,InputStream is){
 		
 		Gson gson = new Gson();
 		Type typeOfT = new TypeToken<List<City>>(){}.getType();
@@ -39,4 +39,17 @@ public class JSONUtil {
 		}
 		LogUtil.i("CoolWeather", "保存成功!");
 	}
+	
+	public static JsonWeather handleJSONWeather(InputStream is){
+		Gson gson = new Gson();
+		BufferedReader json = new BufferedReader(new InputStreamReader(is));
+		JsonWeather fromJson = gson.fromJson(json, JsonWeather.class);
+		if(fromJson != null){
+			LogUtil.v("CoolWeather", "JsonUtil-天气信息解析成功!fromJson != null");
+		}else{
+			LogUtil.v("CoolWeather", "JsonUtil-fromJson="+fromJson);
+		}
+		return fromJson;
+	}
+	
 }

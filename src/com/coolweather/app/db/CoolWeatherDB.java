@@ -1,7 +1,6 @@
 package com.coolweather.app.db;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import com.coolweather.app.model.City;
 import android.content.ContentValues;
@@ -34,43 +33,14 @@ public class CoolWeatherDB {
 		return coolWeatherDB;
 	}
 	
-//	/**
-//	 * 将Province实例保存到数据库
-//	 */
-//	public void saveProvince(Province province){
-//		if(province != null){
-//			ContentValues values = new ContentValues();
-//			values.put("province_name", province.getProvinceName());
-//			values.put("province_code", province.getProvinceCode());
-//			db.insert("Province", null, values);
-//		}
-//	}
-//	
-//	/**
-//	 * 查询数据库中所有的Province实例
-//	 */
-//	public List<Province> listProvince(){
-//		List<Province> list = new ArrayList<Province>();
-//		Cursor cursor = db.query("Province", null, null, null, null, null, null);
-//		Province province = null;
-//		while(cursor.moveToNext()){
-//			province = new Province();
-//			province.setId(cursor.getInt(0));
-//			province.setProvinceName(cursor.getString(1));
-//			province.setProvinceCode(cursor.getString(2));
-//			list.add(province);
-//		}
-//		return list ;
-//	}
 	
 	/**
 	 * 将City实例保存到数据库
 	 */
-	public long saveCity(City city){
-		long changeLine = 0;
+	public void saveCity(City city){
 		if(city != null){
 			ContentValues values = new ContentValues();
-			values.put("city_id", city.getId());
+			values.put("id", city.getId());
 			values.put("city_en", city.getCityEn());
 			values.put("city_zh", city.getCityZh());
 			values.put("country_code", city.getCountryCode());
@@ -82,28 +52,27 @@ public class CoolWeatherDB {
 			values.put("leader_zh", city.getLeaderZh());
 			values.put("lat", city.getLat());
 			values.put("lon", city.getLon());
-			long insert = db.insert("City", null, values); 
-			changeLine += insert;
+			db.insert("City", null, values); 
 		}
-		return changeLine;
 	}
 	
-	/**
-	 * 查询数据库中所有cityId对应的City实例
+	/**查询数据库中所有cityId对应的City实例
+	 * @param cityId 或null返回所有的数据
+	 * @return 
 	 */
 	public List<City> listCity(String cityId){
 		List<City> list = new ArrayList<City>();
 		Cursor cursor = null;
 		if(cityId != null){
 			cursor = db.query("City", null, 
-					"city_id = ?", new String[]{cityId}, null, null, null);
+					"id = ?", new String[]{cityId}, null, null, null);
 		}else{
 			cursor = db.query("City", null, null, null, null, null, null);
 		}
 		City city = null;
 		while(cursor.moveToNext()){
 			city = new City();
-			city.setId(cityId);
+			city.setId(cursor.getString(cursor.getColumnIndex("id")));
 			city.setCityEn(cursor.getString(cursor.getColumnIndex("city_en")));
 			city.setCityZh(cursor.getString(cursor.getColumnIndex("city_zh")));
 			city.setCountryCode(cursor.getString(cursor.getColumnIndex("country_code")));
